@@ -1,0 +1,10 @@
+<h1>Edit merchant details</h1>
+
+
+<div class="form-group">
+<form method = "post" action = "/merchants/<%=@merchant.id%>">
+  <label for="name">Merchant name:</label>
+  <input id="name" type="text" name="name" value="<%=@merchant.name%>"/>
+  <input type="submit" value="Edit merchant"/>
+</form>
+</div>
