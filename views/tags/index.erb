@@ -1,0 +1,14 @@
+<div class="container">
+
+  <% for tag in @tags %>
+  <div class="tag">
+    <p>Tag name: <%=tag.name%></p>
+    <p><a href="/tags/<%=tag.id%>/edit" >Edit this tag</a></p>
+    <form method = "post" action = "/tags/<%=tag.id%>/delete">
+      <input type="submit" value="Delete tag"/>
+    </form>
+    <hr>
+  </div>
+  <% end %>
+
+</div>

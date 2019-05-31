@@ -1,0 +1,10 @@
+<h1>Edit tag details</h1>
+
+
+<div class="form-group">
+<form method = "post" action = "/tags/<%=@tag.id%>">
+  <label for="name">Tag name:</label>
+  <input id="name" type="text" name="name" value="<%=@tag.name%>"/>
+  <input type="submit" value="Edit tag"/>
+</form>
+</div>
