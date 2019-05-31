@@ -78,6 +78,8 @@ transaction5.save()
 
 all_transactions = Transaction.all()
 
+find_transaction = Transaction.find_by_id(transaction3.id)
+
 binding.pry
 
 nil
