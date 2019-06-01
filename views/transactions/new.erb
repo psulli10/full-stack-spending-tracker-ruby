@@ -1,0 +1,24 @@
+<h1>Add a new merchant!</h1>
+
+<div class="form-group">
+<form method = "post" action = "/transactions">
+  <label for="amount">Amount:</label>
+  <input id="amount" type="number" name="amount" min= "0" pattern="^\d*(\.\d{0,2})?$" step= "0.01"/>
+
+  <label for="merchant-select">Select a Merchant:</label>
+  <select id="merchant-select" name="merchant_id">
+    <% for merchant in @merchants %>
+    <option value= <%=merchant.id%>><%=merchant.name%></option>
+   <% end %>
+  </select>
+
+  <label for="tag-select">Select a Merchant:</label>
+  <select id="tag-select" name="tag_id">
+    <% for tag in @tags %>
+    <option value= <%=tag.id%>><%=tag.name%></option>
+   <% end %>
+  </select>
+
+  <input type="submit" value="Create transaction"/>
+</form>
+</div>

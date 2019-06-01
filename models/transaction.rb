@@ -26,6 +26,26 @@ class Transaction
     return Transaction.new(result)
   end
 
+  def find_merchant
+    sql = "SELECT merchants.name FROM transactions
+    INNER JOIN merchants ON
+    transactions.merchant_id = merchants.id
+    WHERE transactions.id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)[0]
+    return result['name']
+  end
+
+  def find_tag
+    sql = "SELECT tags.name FROM transactions
+    INNER JOIN tags ON
+    transactions.tag_id = tags.id
+    WHERE transactions.id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)[0]
+    return result['name']
+  end
+
   def self.all()
     sql = "SELECT * FROM transactions"
     results = SqlRunner.run(sql)
@@ -44,6 +64,15 @@ class Transaction
     result = SqlRunner.run(sql)
     return result.first['total_transactions'].to_f
   end
+
+
+  # def self.all_with_merchant_tag
+  #   sql = "SELECT transactions.*, merchants.*, tags.* FROM transactions
+  #   INNER JOIN merchants ON
+  #   transactions.merchant_id = merchants.id
+  #   INNER JOIN tags ON
+  #   transactions.tag_id = tags.id"
+  # end
 
 
 end

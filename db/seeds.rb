@@ -80,6 +80,8 @@ all_transactions = Transaction.all()
 
 find_transaction = Transaction.find_by_id(transaction3.id)
 
+merchant_name = transaction1.find_merchant()
+
 binding.pry
 
 nil

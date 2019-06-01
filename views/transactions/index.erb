@@ -1,0 +1,16 @@
+<div class="container">
+
+<h3><a href="/transactions/new">Create new transaction</a></h3>
+
+  <% for transaction in @transactions %>
+  <div class="tag">
+    <p>Amount: <%=transaction.amount%></p>
+    <p>Merchant: <%=transaction.find_merchant()%></p>
+    <p>Tag: <%=transaction.find_tag%></p>
+    <hr>
+  </div>
+  <% end %>
+
+  <h3>Total: <%=@total%></h3>
+
+</div>
