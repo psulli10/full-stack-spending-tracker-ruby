@@ -96,5 +96,35 @@ class Transaction
   #   transactions.tag_id = tags.id"
   # end
 
+  def self.filter_merchant(merchant_id)
+    sql = "SELECT * from transactions WHERE merchant_id = $1"
+    values = [merchant_id]
+    results = SqlRunner.run(sql, values)
+    return results.map{|transaction| Transaction.new(transaction)}
+  end
+
+  def self.total_by_merchant(merchant_id)
+    sql = "SELECT SUM (amount) as total_transactions FROM transactions WHERE merchant_id = $1"
+    values = [merchant_id]
+    result = SqlRunner.run(sql, values)
+    return result.first['total_transactions'].to_f
+  end
+
+  def self.filter_by_month(month_number)
+    sql = "SELECT *, EXTRACT(MONTH FROM transaction_date) FROM transactions
+    WHERE EXTRACT(MONTH FROM transaction_date) = $1"
+    values = [month_number]
+    results = SqlRunner.run(sql, values)
+    return results.map{|transaction| Transaction.new(transaction)}
+  end
+
+  def self.total_by_month(month_number)
+    sql = "SELECT *, EXTRACT(MONTH FROM transaction_date) FROM transactions
+    WHERE EXTRACT(MONTH FROM transaction_date) = $1"
+    values = [month_number]
+    results = SqlRunner.run(sql, values)
+    results = results.map{|transaction| transaction['amount'].to_f}
+    return results.sum()
+  end
 
 end

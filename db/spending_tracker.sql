@@ -42,3 +42,6 @@ CREATE TABLE budgets(
 -- SELECT *, TO_CHAR(transaction_date, 'DD-MON-YYYY')
 -- FROM transactions
 -- WHERE id = 5;
+
+-- SELECT *, EXTRACT(MONTH FROM transaction_date) FROM transactions
+-- WHERE EXTRACT(MONTH FROM transaction_date) = 3;
