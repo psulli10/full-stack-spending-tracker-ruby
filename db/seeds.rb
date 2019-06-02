@@ -1,6 +1,7 @@
 require_relative( '../models/merchant.rb' )
 require_relative( '../models/tag.rb' )
 require_relative( '../models/transaction.rb' )
+require_relative( '../models/budget.rb' )
 require('pry')
 
 Merchant.delete_all()
@@ -88,6 +89,24 @@ all_transactions = Transaction.all()
 find_transaction = Transaction.find_by_id(transaction3.id)
 
 merchant_name = transaction1.find_merchant()
+
+# BUDGETS
+budget1 = Budget.new({
+  'total' => 500,
+  'warning_limit' => 50,
+  'message' => "You're flush..."
+  })
+
+budget1.save()
+
+# budget1.delete()
+
+# budget_found = budget1.find()
+
+budget1.warning_limit = 75.25
+budget1.update()
+
+budget_by_id = Budget.find_by_id(1)
 
 binding.pry
 

@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS merchants;
 DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS budgets;
 
 SET datestyle to DMY, SQL;
 
@@ -22,6 +23,12 @@ CREATE TABLE transactions(
   tag_id INT8 REFERENCES tags(id) ON DELETE CASCADE
 );
 
+CREATE TABLE budgets(
+  id SERIAL8 PRIMARY KEY,
+  total FLOAT(2),
+  warning_limit FLOAT(2),
+  message VARCHAR(255)
+);
 
 -- SELECT  Convert(varchar,transactions.transaction_date,103) as tran_date
 -- order by Convert(varchar,transactions.transaction_date,103)
