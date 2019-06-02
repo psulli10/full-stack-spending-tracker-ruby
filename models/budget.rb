@@ -45,17 +45,17 @@ class Budget
     return remaining_budget
   end
 
-  # def update_message()
-  #   remaining_budget = remaining_budget()
-  #   if remaining_budget > @warning_limit
-  #     @message = "You're flush, spend away..."
-  #   elsif remaining_budget <= @warning_limit && remaining_budget > 0
-  #     @message = "Nearly skint, keep an eye on the pennies"
-  #   elsif remaining_budget <= 0
-  #     @message = "Aye, you're skint, bread and water from now on"
-  #   end
-  #   update()
-  # end
+  def update_message()
+    remaining_budget = remaining_budget()
+    if remaining_budget > @warning_limit
+      @message = "You're flush, spend away..."
+    elsif remaining_budget <= @warning_limit && remaining_budget > 0
+      @message = "Nearly skint, keep an eye on the pennies"
+    elsif remaining_budget <= 0
+      @message = "Aye, you're skint, bread and water from now on"
+    end
+    update()
+  end
 
   def self.find_by_id(id)
     sql = "SELECT * FROM budgets WHERE id = $1"

@@ -1,0 +1,18 @@
+<div class="container">
+
+<h3><a href="/budgets/new">Create a new budget</a></h3>
+
+  <% for budget in @budgets %>
+  <div class="<%=budget.message()%>">
+    <p>Budget total: <%=budget.total%></p>
+    <p>Budget remaining: <%=budget.remaining_budget()%></p>
+    <p>Budget status: <%=budget.message()%></p>
+    <p><a href="/budgets/<%=budget.id%>/edit" >Edit my budget</a></p>
+    <form method = "post" action = "/budgets/<%=budget.id%>/delete">
+      <input type="submit" value="Delete budget"/>
+    </form>
+    <hr>
+  </div>
+  <% end %>
+
+</div>

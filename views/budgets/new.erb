@@ -1,0 +1,13 @@
+<h1>Add a new budget!</h1>
+
+<div class="form-group">
+<form method = "post" action = "/budgets">
+  <label for="total">Budget total:</label>
+  <input id="total" type="number" name="total" min= "0" pattern="^\d*(\.\d{0,2})?$" step= "0.01"/>
+
+  <label for="warning_limit">Budget warning limit:</label>
+  <input id="warning_limit" type="number" name="warning_limit" min= "0" pattern="^\d*(\.\d{0,2})?$" step= "0.01"/>
+
+  <input type="submit" value="Create budget"/>
+</form>
+</div>
