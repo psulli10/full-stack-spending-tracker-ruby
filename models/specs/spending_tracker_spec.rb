@@ -13,4 +13,8 @@ class TestTransaction < MiniTest::Test
     assert_equal(179.77, Transaction.total())
   end
 
+  def test_transaction_date
+    assert_equal("2/6/2019", Transaction.transaction_date())
+  end
+
 end

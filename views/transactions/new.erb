@@ -12,12 +12,15 @@
    <% end %>
   </select>
 
-  <label for="tag-select">Select a Merchant:</label>
+  <label for="tag-select">Select a Tag:</label>
   <select id="tag-select" name="tag_id">
     <% for tag in @tags %>
     <option value= <%=tag.id%>><%=tag.name%></option>
    <% end %>
   </select>
+
+  <label for="amount">Amount:</label>
+  <input id="transaction_date" type="date" name="transaction_date" max="today"/>
 
   <input type="submit" value="Create transaction"/>
 </form>

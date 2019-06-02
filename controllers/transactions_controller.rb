@@ -12,6 +12,12 @@ get '/transactions' do
   erb(:"transactions/index")
 end
 
+get '/transactions/by_date' do
+  @transactions = Transaction.sort_by_date()
+  @total = Transaction.total()
+  erb(:"transactions/index")
+end
+
 # NEW - DISPLAY A FORM TO MAKE A NEW TAG
 
 get '/transactions/new' do

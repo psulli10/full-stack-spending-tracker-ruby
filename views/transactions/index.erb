@@ -2,11 +2,14 @@
 
 <h3><a href="/transactions/new">Create new transaction</a></h3>
 
+<h3><a href="/transactions/by_date">Order transactions by date</a></h3>
+
   <% for transaction in @transactions %>
   <div class="tag">
     <p>Amount: <%=transaction.amount%></p>
     <p>Merchant: <%=transaction.find_merchant()%></p>
-    <p>Tag: <%=transaction.find_tag%></p>
+    <p>Tag: <%=transaction.find_tag()%></p>
+    <p>Date: <%=transaction.display_date()%></p>
     <hr>
   </div>
   <% end %>

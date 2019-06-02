@@ -2,7 +2,7 @@ require_relative( '../db/sql_runner' )
 
 class Transaction
 
-  attr_accessor :amount, :merchant_id, :tag_id
+  attr_accessor :amount, :merchant_id, :tag_id, :transaction_date
   attr_reader :id
 
   def initialize(options)
@@ -10,17 +10,18 @@ class Transaction
     @amount = options['amount'].to_f
     @merchant_id = options['merchant_id'].to_i if options['merchant_id']
     @tag_id = options['tag_id'].to_i if options['tag_id']
+    @transaction_date = options['transaction_date'] if options['transaction_date']
   end
 
   def save()
-    sql = "INSERT INTO transactions (amount, merchant_id, tag_id) VALUES ($1, $2, $3) RETURNING id"
-    values = [@amount.to_s, @merchant_id, @tag_id]
+    sql = "INSERT INTO transactions (amount, merchant_id, tag_id, transaction_date) VALUES ($1, $2, $3, $4) RETURNING id"
+    values = [@amount.to_s, @merchant_id, @tag_id, @transaction_date]
     results = SqlRunner.run(sql, values)
     @id = results.first()['id'].to_i
   end
 
   def find()
-    sql = "SELECT * FROM transactions WHERE id = $1"
+    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)[0]
     return Transaction.new(result)
@@ -46,14 +47,23 @@ class Transaction
     return result['name']
   end
 
+  def display_date
+    sql = "SELECT *, TO_CHAR(transaction_date, 'dd-Mon-YYYY')
+    FROM transactions
+    WHERE id = $1;"
+    values = [@id]
+    result = SqlRunner.run(sql, values)[0]
+    return result['to_char']
+  end
+
   def self.all()
-    sql = "SELECT * FROM transactions"
+    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions"
     results = SqlRunner.run(sql)
     return results.map{|transaction| Transaction.new(transaction)}
   end
 
   def self.find_by_id(id)
-    sql = "SELECT * FROM transactions WHERE id = $1"
+    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)[0]
     return Transaction.new(result)
@@ -65,6 +75,18 @@ class Transaction
     return result.first['total_transactions'].to_f
   end
 
+
+  def self.transaction_date
+    date = Time.new
+    date = date.day.to_s + "/" + date.month.to_s + "/" + date.year.to_s
+    return date
+  end
+
+  def self.sort_by_date
+    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions order by transaction_date DESC"
+    results = SqlRunner.run(sql)
+    return results.map{|transaction| Transaction.new(transaction)}
+  end
 
   # def self.all_with_merchant_tag
   #   sql = "SELECT transactions.*, merchants.*, tags.* FROM transactions
