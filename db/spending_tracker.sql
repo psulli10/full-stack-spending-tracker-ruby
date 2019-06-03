@@ -17,7 +17,7 @@ CREATE TABLE tags(
 
 CREATE TABLE transactions(
   id SERIAL8 PRIMARY KEY,
-  amount FLOAT(2),
+  amount DECIMAL(10,2),
   transaction_date DATE,
   merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
   tag_id INT8 REFERENCES tags(id) ON DELETE CASCADE
@@ -25,7 +25,7 @@ CREATE TABLE transactions(
 
 CREATE TABLE budgets(
   id SERIAL8 PRIMARY KEY,
-  total FLOAT(2),
+  total DECIMAL(10,2),
   warning_limit FLOAT(2),
   message VARCHAR(255)
 );

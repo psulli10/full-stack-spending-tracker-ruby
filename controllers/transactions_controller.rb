@@ -4,13 +4,14 @@ require( 'pry' )
 require_relative('../models/transaction')
 also_reload('../models/*')
 
-# INDEX route - DISPLAY ALL TAGS
+# INDEX route - DISPLAY ALL TRANSACTIONS
 
 get '/transactions' do
   @transactions = Transaction.all()
   @merchants = Merchant.all()
   @tags = Tag.all()
   @total = Transaction.total()
+  @budgets = Budget.all()
   erb(:"transactions/index")
 end
 
@@ -21,10 +22,11 @@ get '/transactions/by_date' do
   @merchants = Merchant.all()
   @tags = Tag.all()
   @total = Transaction.total()
+  @budgets = Budget.all()
   erb(:"transactions/index")
 end
 
-# NEW - DISPLAY A FORM TO MAKE A NEW TAG
+# NEW - DISPLAY A FORM TO MAKE A NEW TRANSACTION
 
 get '/transactions/new' do
   @merchants = Merchant.all()
@@ -32,23 +34,25 @@ get '/transactions/new' do
   erb(:"transactions/new")
 end
 
-# CREATE - CREATE A DATABASE ENTRY FOR THE NEW TAG
+# CREATE - CREATE A DATABASE ENTRY FOR THE NEW TRANSACTION
 
 post '/transactions' do
   @transaction = Transaction.new(params)
   @transaction.save()
+  @update_message = Budget.update_message
   redirect '/transactions'
 end
 
-# DELETE - DELETES A MERCHSANT  FROM THE DATABASE
+# DELETE - DELETES A TRANSACTION FROM THE DATABASE
 
 post '/transactions/:id/delete' do
   @transaction = Transaction.find_by_id(params['id'])
   @transaction.delete()
+  @update_message = Budget.update_message
   redirect '/transactions'
 end
 
-# FILTER BY MERCHANT
+# FILTER TRANSACTIONS BY MERCHANT
 
 get '/transactions/filter_merchant' do
   @transactions = Transaction.filter_merchant(params['merchant_id'])
@@ -56,10 +60,11 @@ get '/transactions/filter_merchant' do
   @tags = Tag.all()
   @total = Transaction.total()
   @total_by_merchant = Transaction.total_by_merchant(params['merchant_id'])
+  @budgets = Budget.all()
   erb(:"transactions/index")
 end
 
-# FILTER BY TAG
+# FILTER TRANSACTIONS BY TAG
 
 get '/transactions/filter_tag' do
   @transactions = Transaction.filter_by_tag(params['tag_id'])
@@ -67,10 +72,11 @@ get '/transactions/filter_tag' do
   @tags = Tag.all()
   @total = Transaction.total()
   @total_by_tag = Transaction.total_by_tag(params['tag_id'])
+  @budgets = Budget.all()
   erb(:"transactions/index")
 end
 
-# FILTER BY MONTH
+# FILTER TRANSACTIONS BY MONTH
 
 get '/transactions/filter_month' do
   @transactions = Transaction.filter_by_month(params['month_number'])
@@ -78,5 +84,6 @@ get '/transactions/filter_month' do
   @tags = Tag.all()
   @total = Transaction.total()
   @total_by_merchant = Transaction.total_by_month(params['month_number'])
+  @budgets = Budget.all()
   erb(:"transactions/index")
 end

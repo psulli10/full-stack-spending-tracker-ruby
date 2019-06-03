@@ -1,57 +1,43 @@
+<h1>Your transactions...</h1>
+
 <div class="container">
+
+<div class="header_links">
 
 <h3><a href="/transactions/new">Create new transaction</a></h3>
 
 <h3><a href="/transactions/by_date">Order transactions by date</a></h3>
 
-<h3>Filter by merchant</h3>
-<form class="merchant_filter" action="/transactions/filter_merchant" method="get">
-<label for="merchant-filter">Select a merchant:</label>
-<select id="merchant-filter" name="merchant_id">
-  <option style="display:none;"></option>
-  <% for merchant in @merchants %>
-  <option value= <%=merchant.id%>><%=merchant.name%></option>
- <% end %>
-   <input type="submit" value="Filter by merchant"/>
-</select>
-</form>
+</div>
 
-<h3>Filter by tag</h3>
-<form class="tag_filter" action="/transactions/filter_tag" method="get">
-<label for="tag-filter">Select a tag:</label>
-<select id="tag-filter" name="tag_id">
-  <option style="display:none;"></option>
-  <% for tag in @tags %>
-  <option value= <%=tag.id%>><%=tag.name%></option>
- <% end %>
-   <input type="submit" value="Filter by tag"/>
-</select>
-</form>
+<% if @budgets %>
+<div class="budget_message">
+  <% for budget in @budgets %>
+  <h3> Skint? <%=budget.message%></h3>
+  <% end %>
+</div>
+<% end %>
 
-<h3>Filter by month</h3>
-<form class="month_filter" action="/transactions/filter_month" method="get">
-<label for="month-filter">Select a month:</label>
-<select id="month-filter" name="month_number">
-  <option style="display:none;"></option>
-  <option value= "1">January</option>
-  <option value= "2">February</option>
-  <option value= "3">March</option>
-  <option value= "4">April</option>
-  <option value= "5">May</option>
-  <option value= "6">June</option>
-  <option value= "7">July</option>
-  <option value= "8">August</option>
-  <option value= "9">September</option>
-  <option value= "10">October</option>
-  <option value= "11">November</option>
-  <option value= "12">December</option>
-   <input type="submit" value="Filter by month"/>
-</select>
-</form>
+<div class="totals">
+  <% if @total_by_merchant%>
+  <h3>Total for merchant: £<%=@total_by_merchant%>
+  <%end%>
+
+  <% if @total_by_month%>
+  <h3>Total for month: £<%=@total_by_month%>
+  <%end%>
+
+  <% if @total_by_tag%>
+  <h3>Total by tag: £<%=@total_by_tag%>
+  <%end%>
+
+  <h3>Total for all transactions: £<%=@total%></h3>
+  <hr>
+  </div>
 
   <% for transaction in @transactions %>
-  <div class="tag">
-    <p>Amount: <%=transaction.amount%></p>
+  <div class="transactions">
+    <p>Amount: £<%=transaction.amount.to_s%></p>
     <p>Merchant: <%=transaction.find_merchant()%></p>
     <p>Tag: <%=transaction.find_tag()%></p>
     <p>Date: <%=transaction.display_date()%></p>
@@ -62,19 +48,50 @@
   </div>
   <% end %>
 
+  <div class="filters">
+    <hr>
+  <form class="merchant_filter" action="/transactions/filter_merchant" method="get">
+  <label for="merchant-filter">Select a merchant:</label>
+  <select id="merchant-filter" name="merchant_id">
+    <option style="display:none;"></option>
+    <% for merchant in @merchants %>
+    <option value= <%=merchant.id%>><%=merchant.name%></option>
+   <% end %>
+     <input type="submit" value="Filter by merchant"/>
+  </select>
+  </form>
 
-  <% if @total_by_merchant%>
-  <h3>Total for merchant: <%=@total_by_merchant%>
-  <%end%>
+  <form class="tag_filter" action="/transactions/filter_tag" method="get">
+  <label for="tag-filter">Select a tag:</label>
+  <select id="tag-filter" name="tag_id">
+    <option style="display:none;"></option>
+    <% for tag in @tags %>
+    <option value= <%=tag.id%>><%=tag.name%></option>
+   <% end %>
+     <input type="submit" value="Filter by tag"/>
+  </select>
+  </form>
 
-  <% if @total_by_month%>
-  <h3>Total by month: <%=@total_by_month%>
-  <%end%>
+  <form class="month_filter" action="/transactions/filter_month" method="get">
+  <label for="month-filter">Select a month:</label>
+  <select id="month-filter" name="month_number">
+    <option style="display:none;"></option>
+    <option value= "1">January</option>
+    <option value= "2">February</option>
+    <option value= "3">March</option>
+    <option value= "4">April</option>
+    <option value= "5">May</option>
+    <option value= "6">June</option>
+    <option value= "7">July</option>
+    <option value= "8">August</option>
+    <option value= "9">September</option>
+    <option value= "10">October</option>
+    <option value= "11">November</option>
+    <option value= "12">December</option>
+     <input type="submit" value="Filter by month"/>
+  </select>
+  </form>
+  </div>
 
-  <% if @total_by_tag%>
-  <h3>Total by tag: <%=@total_by_tag%>
-  <%end%>
-
-  <h3>Total for all transactions: <%=@total%></h3>
 
 </div>

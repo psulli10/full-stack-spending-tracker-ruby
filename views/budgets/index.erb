@@ -1,11 +1,20 @@
-<div class="container">
+<h1>Your budget...</h1>
 
-<h3><a href="/budgets/new">Create a new budget</a></h3>
+<% if @budgets.length > 0 %>
+<p> </p>
+<% else %>
+<div class="header_links">
+  <h3><a href="/budgets/new">Create a new budget</a></h3>
+</div>
+<%end%>
+
+<div class="container">
 
   <% for budget in @budgets %>
   <div class="<%=budget.message()%>">
-    <p>Budget total: <%=budget.total%></p>
-    <p>Budget remaining: <%=budget.remaining_budget()%></p>
+    <p>Budget total: £<%=budget.total%></p>
+    <p>Budget warning limit: £<%=budget.warning_limit%></p>
+    <p>Budget remaining: £<%=budget.remaining_budget()%></p>
     <p>Budget status: <%=budget.message()%></p>
     <p><a href="/budgets/<%=budget.id%>/edit" >Edit my budget</a></p>
     <form method = "post" action = "/budgets/<%=budget.id%>/delete">
