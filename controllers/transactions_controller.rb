@@ -9,12 +9,17 @@ also_reload('../models/*')
 get '/transactions' do
   @transactions = Transaction.all()
   @merchants = Merchant.all()
+  @tags = Tag.all()
   @total = Transaction.total()
   erb(:"transactions/index")
 end
 
+# SORT - SORT TRANSACTIONS BY DATE
+
 get '/transactions/by_date' do
   @transactions = Transaction.sort_by_date()
+  @merchants = Merchant.all()
+  @tags = Tag.all()
   @total = Transaction.total()
   erb(:"transactions/index")
 end
@@ -35,13 +40,33 @@ post '/transactions' do
   redirect '/transactions'
 end
 
+# DELETE - DELETES A MERCHSANT  FROM THE DATABASE
+
+post '/transactions/:id/delete' do
+  @transaction = Transaction.find_by_id(params['id'])
+  @transaction.delete()
+  redirect '/transactions'
+end
+
 # FILTER BY MERCHANT
 
 get '/transactions/filter_merchant' do
   @transactions = Transaction.filter_merchant(params['merchant_id'])
   @merchants = Merchant.all()
+  @tags = Tag.all()
   @total = Transaction.total()
   @total_by_merchant = Transaction.total_by_merchant(params['merchant_id'])
+  erb(:"transactions/index")
+end
+
+# FILTER BY TAG
+
+get '/transactions/filter_tag' do
+  @transactions = Transaction.filter_by_tag(params['tag_id'])
+  @merchants = Merchant.all()
+  @tags = Tag.all()
+  @total = Transaction.total()
+  @total_by_tag = Transaction.total_by_tag(params['tag_id'])
   erb(:"transactions/index")
 end
 
@@ -50,6 +75,7 @@ end
 get '/transactions/filter_month' do
   @transactions = Transaction.filter_by_month(params['month_number'])
   @merchants = Merchant.all()
+  @tags = Tag.all()
   @total = Transaction.total()
   @total_by_merchant = Transaction.total_by_month(params['month_number'])
   erb(:"transactions/index")

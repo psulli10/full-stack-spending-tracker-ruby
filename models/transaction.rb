@@ -27,7 +27,7 @@ class Transaction
     return Transaction.new(result)
   end
 
-  def find_merchant
+  def find_merchant()
     sql = "SELECT merchants.name FROM transactions
     INNER JOIN merchants ON
     transactions.merchant_id = merchants.id
@@ -37,7 +37,7 @@ class Transaction
     return result['name']
   end
 
-  def find_tag
+  def find_tag()
     sql = "SELECT tags.name FROM transactions
     INNER JOIN tags ON
     transactions.tag_id = tags.id
@@ -47,7 +47,7 @@ class Transaction
     return result['name']
   end
 
-  def display_date
+  def display_date()
     sql = "SELECT *, TO_CHAR(transaction_date, 'dd-Mon-YYYY')
     FROM transactions
     WHERE id = $1;"
@@ -69,6 +69,12 @@ class Transaction
     return Transaction.new(result)
   end
 
+  def delete()
+    sql = "DELETE from transactions WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.total()
     sql = "SELECT SUM (amount) as total_transactions FROM transactions;"
     result = SqlRunner.run(sql)
@@ -76,13 +82,13 @@ class Transaction
   end
 
 
-  def self.transaction_date
+  def self.transaction_date()
     date = Time.new
     date = date.day.to_s + "/" + date.month.to_s + "/" + date.year.to_s
     return date
   end
 
-  def self.sort_by_date
+  def self.sort_by_date()
     sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions order by transaction_date DESC"
     results = SqlRunner.run(sql)
     return results.map{|transaction| Transaction.new(transaction)}
@@ -106,6 +112,20 @@ class Transaction
   def self.total_by_merchant(merchant_id)
     sql = "SELECT SUM (amount) as total_transactions FROM transactions WHERE merchant_id = $1"
     values = [merchant_id]
+    result = SqlRunner.run(sql, values)
+    return result.first['total_transactions'].to_f
+  end
+
+  def self.filter_by_tag(tag_id)
+    sql = "SELECT * from transactions WHERE tag_id = $1"
+    values = [tag_id]
+    results = SqlRunner.run(sql, values)
+    return results.map{|transaction| Transaction.new(transaction)}
+  end
+
+  def self.total_by_tag(tag_id)
+    sql = "SELECT SUM (amount) as total_transactions FROM transactions WHERE tag_id = $1"
+    values = [tag_id]
     result = SqlRunner.run(sql, values)
     return result.first['total_transactions'].to_f
   end
