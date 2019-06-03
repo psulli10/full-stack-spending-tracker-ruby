@@ -27,7 +27,8 @@ CREATE TABLE budgets(
   id SERIAL8 PRIMARY KEY,
   total DECIMAL(10,2),
   warning_limit FLOAT(2),
-  message VARCHAR(255)
+  message VARCHAR(255),
+  message_indicator VARCHAR(255)
 );
 
 -- SELECT  Convert(varchar,transactions.transaction_date,103) as tran_date

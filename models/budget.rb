@@ -3,7 +3,7 @@ require_relative('./transaction')
 
 class Budget
 
-  attr_accessor :total, :warning_limit, :message
+  attr_accessor :total, :warning_limit, :message, :message_indicator
   attr_reader :id
 
   def initialize(options)
@@ -11,6 +11,7 @@ class Budget
     @total = options['total'].to_f
     @warning_limit = options['warning_limit'].to_f
     @message = options['message']
+    @message_indicator = options['message_indicator'] if options['message_indicator']
   end
 
   def save()
@@ -34,8 +35,8 @@ class Budget
   end
 
   def update()
-    sql = "UPDATE budgets SET (total, warning_limit, message) = ($1, $2, $3) WHERE id = $4"
-    values = [@total, @warning_limit, @message, @id]
+    sql = "UPDATE budgets SET (total, warning_limit, message, message_indicator) = ($1, $2, $3, $4) WHERE id = $5"
+    values = [@total, @warning_limit, @message, @message_indicator, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -48,11 +49,14 @@ class Budget
   def update_message()
     remaining_budget = remaining_budget()
     if remaining_budget > @warning_limit
-      @message = "You're flush, spend away..."
+      @message = "Nah! You're flush, spend away..."
+      @message_indicator = "green"
     elsif remaining_budget <= @warning_limit && remaining_budget > 0
-      @message = "Nearly skint, keep an eye on the pennies"
+      @message = "Almost... keep an eye on the pennies"
+      @message_indicator = "yellow"
     elsif remaining_budget <= 0
-      @message = "Aye, you're skint, bread and water from now on"
+      @message = "Aye, you're skint! Bread and water from now on"
+      @message_indicator = "red"
     end
     update()
   end
@@ -89,10 +93,13 @@ class Budget
     remaining_budget = @budget.remaining_budget()
     if remaining_budget > @budget.warning_limit()
       @budget.message = "You're flush, spend away..."
+      @budget.message_indicator = "green"
     elsif remaining_budget <= @budget.warning_limit() && remaining_budget > 0
       @budget.message = "Nearly skint, keep an eye on the pennies"
+      @budget.message_indicator = "yellow"
     elsif remaining_budget <= 0
       @budget.message = "Aye, you're skint, bread and water from now on"
+      @budget.message_indicator = "red"
     end
     @budget.update()
   end

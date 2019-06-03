@@ -11,7 +11,7 @@
 <div class="container">
 
   <% for budget in @budgets %>
-  <div class="<%=budget.message()%>">
+  <div class="<%=budget.message_indicator()%>">
     <p>Budget total: £<%=budget.total%></p>
     <p>Budget warning limit: £<%=budget.warning_limit%></p>
     <p>Budget remaining: £<%=budget.remaining_budget()%></p>

@@ -11,8 +11,8 @@
 </div>
 
 <% if @budgets %>
-<div class="budget_message">
-  <% for budget in @budgets %>
+<% for budget in @budgets %>
+<div class="<%=budget.message_indicator%>">
   <h3> Skint? <%=budget.message%></h3>
   <% end %>
 </div>
@@ -32,7 +32,6 @@
   <%end%>
 
   <h3>Total for all transactions: £<%=@total%></h3>
-  <hr>
   </div>
 
   <% for transaction in @transactions %>

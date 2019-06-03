@@ -194,6 +194,38 @@ input[type=submit]:hover {
 }
 
 .totals {
+  display: flex;
+  height: 10vh;
   color: darkblue;
   height: 10vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  display: flex;
+  height: 10vh;
+  width: 50vw;
+  background-color: green;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+.yellow {
+  display: flex;
+  height: 10vh;
+  width: 50vw;
+  background-color: yellow;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+.red {
+  display: flex;
+  height: 10vh;
+  width: 50vw;
+  background-color: red;
+  color: white;
+  align-items: center;
+  justify-content: center;
 }

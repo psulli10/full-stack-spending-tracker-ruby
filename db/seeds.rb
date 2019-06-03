@@ -94,7 +94,8 @@ merchant_name = transaction1.find_merchant()
 budget1 = Budget.new({
   'total' => 500,
   'warning_limit' => 50,
-  'message' => "You're flush..."
+  'message' => "You're flush...",
+  'message_indicator' => 'purple'
   })
 
 budget1.save()
