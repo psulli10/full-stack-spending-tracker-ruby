@@ -47,7 +47,7 @@ h1 {
   border-radius: 25px;
   background: darkblue;
   height: 10vh;
-  width: 20vw;
+  width: 50vw;
   margin: 15px;
   align-items: center;
   justify-content: center;
@@ -120,6 +120,7 @@ nav {
   align-items: center;
   flex-flow: column;
   color: darkblue;
+  margin-top: 15px;
 }
 
 
@@ -198,11 +199,15 @@ input[type=submit]:hover {
 .transactions {
   display: flex;
   height: 10vh;
-  width: 20vw;
+  width: 50vw;
   margin: 15px;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
+}
+
+.transactions th {
+  text-align: left;
 }
 
 .header_links {
@@ -294,16 +299,65 @@ input[type=submit]:hover {
 
 .tag {
   display: flex;
-  justify-content: center;
+  height: 10vh;
+  width: 50vw;
+  margin: 15px;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
+
+.tag a {
+  background-color: darkblue;
+  text-decoration: none;
+  width: 10vw;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: white;
+  padding: 4px;
+}
+
+.tag a:hover {
+  background-color: #bebede;
+}
+
+.tag a:hover {
+  color: darkblue;
+}
+
 .merchant {
   display: flex;
-  justify-content: center;
+  height: 10vh;
+  width: 50vw;
+  margin: 15px;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
+
+.merchant a {
+  background-color: darkblue;
+  text-decoration: none;
+  width: 10vw;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: white;
+  padding: 4px;
+}
+
+.merchant a:hover {
+  background-color: #bebede;
+}
+
+.merchant a:hover {
+  color: darkblue;
+}
+
+
 .budget_message {
   display: flex;
   justify-content: center;

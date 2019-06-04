@@ -5,15 +5,19 @@
 
 
 <div class="header_links">
-<h3><a href="/tags/new">Create new tag</a></h3>
+<a href="/tags/new">
+<h3>Add a new tag</h3>
+</a>
 </div>
 
-<div class="container">
 
+<div class="container">
   <% for tag in @tags %>
   <div class="tag">
-    <p>Tag name: <%=tag.name%></p>
-    <p><a href="/tags/<%=tag.id%>/edit" >Edit this tag</a></p>
+    <p><%=tag.name%></p>
+    <a href="/tags/<%=tag.id%>/edit"
+    <p>Edit tag</p>
+    </a>
     <form method = "post" action = "/tags/<%=tag.id%>/delete">
       <input type="submit" value="Delete tag"/>
     </form>

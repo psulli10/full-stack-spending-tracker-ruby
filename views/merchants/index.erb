@@ -3,21 +3,24 @@
 </div>
 
 <div class="header_links">
-
-  <h3><a href="/merchants/new">Create new merchant</a></h3>
-
+<a href="/merchants/new">
+  <h3>Add a new merchant</h3>
+</a>
 </div>
 
-<div class="container">
 
+
+
+<div class="container">
   <% for merchant in @merchants %>
   <div class="merchant">
-    <p>Merchant name: <%=merchant.name%></p>
-    <p><a href="/merchants/<%=merchant.id%>/edit" >Edit this merchant</a></p>
+    <p><%=merchant.name%></p>
+    <a href="/merchants/<%=merchant.id%>/edit"
+    <p>Edit merchant</p>
+    </a>
     <form method = "post" action = "/merchants/<%=merchant.id%>/delete">
-      <input type="submit" value="Delete merchant"/>
+    <input type="submit" value="Delete merchant"/>
     </form>
-    <hr>
   </div>
   <% end %>
 

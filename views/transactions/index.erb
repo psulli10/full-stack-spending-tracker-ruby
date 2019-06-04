@@ -6,7 +6,7 @@
 <div class="header_links">
 
 <a href="/transactions/new">
-<h3>Create new transaction</h3>
+<h3>Add a new transaction</h3>
 </a>
 
 </div>
@@ -38,27 +38,43 @@
   <%end%>
 
   <h3>Total for all transactions: £<%=@total%></h3>
+
+  <% if @budgets%>
+  <h3>Remaining budget: £<%=@remaining_budget%>
+  <%end%>
+
   </div>
 </div>
+
+
 
 <div class="container_transactions">
   <% for transaction in @transactions %>
   <div class="transactions">
-    <p>Amount: £<%=transaction.amount.to_s%></p>
-    <p>Merchant: <%=transaction.find_merchant()%></p>
-    <p>Tag: <%=transaction.find_tag()%></p>
-    <p>Date: <%=transaction.display_date()%></p>
+    <table style="width:100%">
+      <tr>
+        <th>Amount</th>
+        <th>Merchant</th>
+        <th>Tag</th>
+        <th>Date</th>
+      </tr>
+      <tr>
+        <td>£<%=transaction.amount.to_s%></td>
+        <td><%=transaction.find_merchant%></td>
+        <td><%=transaction.find_tag%> </td>
+        <td><%=transaction.display_date%></td>
+      </tr>
+      </table>
     <form method = "post" action = "/transactions/<%=transaction.id%>/delete">
       <input type="submit" value="Delete transaction"/>
     </form>
-    <hr>
   </div>
   <% end %>
   </div>
 
   <div class="header_links">
     <a href="/transactions/by_date">
-    <h3>Order transactions by date</h3>
+    <h3>Order all transactions by date</h3>
     </a>
   </div>
 
