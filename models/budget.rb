@@ -101,10 +101,10 @@ class Budget
     @budget = Budget.all()[0]
     remaining_budget = @budget.remaining_budget()
     if remaining_budget > @budget.warning_limit()
-      @budget.message = "You're flush, spend away..."
+      @budget.message = "Nah! You're flush, spend away..."
       @budget.message_indicator = "green"
     elsif remaining_budget <= @budget.warning_limit() && remaining_budget > 0
-      @budget.message = "Nearly skint, keep an eye on the pennies"
+      @budget.message = "Almost... keep an eye on the pennies"
       @budget.message_indicator = "yellow"
     elsif remaining_budget <= 0
       @budget.message = "Aye, you're skint, bread and water from now on"
