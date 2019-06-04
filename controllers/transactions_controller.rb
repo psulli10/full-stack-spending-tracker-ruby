@@ -83,7 +83,7 @@ get '/transactions/filter_month' do
   @merchants = Merchant.all()
   @tags = Tag.all()
   @total = Transaction.total()
-  @total_by_merchant = Transaction.total_by_month(params['month_number'])
+  @total_by_month = Transaction.total_by_month(params['month_number'])
   @budgets = Budget.all()
   erb(:"transactions/index")
 end

@@ -1,4 +1,7 @@
+
+<div class="heading_container">
 <h1>Your budget...</h1>
+</div>
 
 <% if @budgets.length > 0 %>
 <p> </p>
@@ -11,7 +14,7 @@
 <div class="container">
 
   <% for budget in @budgets %>
-  <div class="<%=budget.message_indicator()%>">
+  <div class="budget_message">
     <p>Budget total: £<%=budget.total%></p>
     <p>Budget warning limit: £<%=budget.warning_limit%></p>
     <p>Budget remaining: £<%=budget.remaining_budget()%></p>

@@ -41,7 +41,7 @@ tag3.save()
 
 # TRANSACTIONS
 
-transaction_date = Transaction.transaction_date()
+# transaction_date = Transaction.transaction_date()
 
 transaction1 = Transaction.new({
   'amount' => 21.55,
@@ -58,7 +58,7 @@ transaction2 = Transaction.new({
   })
 
 transaction3 = Transaction.new({
-  'amount' => 10,
+  'amount' => 10.00,
   'merchant_id' => merchant2.id,
   'tag_id' => tag3.id,
   'transaction_date' => '04/28/2019'

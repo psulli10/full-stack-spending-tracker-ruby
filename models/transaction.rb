@@ -75,6 +75,15 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
+  # def self.pretty_number(transactions)
+  #   for transaction in transactions
+  #   if transaction.amount.to_string.split('.')[1] == "0"
+  #     transaction.amount[1] = (transaction.amount[1] << "0")
+  #     return
+  #   end
+  # end
+
+
   def self.total()
     sql = "SELECT SUM (amount) as total_transactions FROM transactions;"
     result = SqlRunner.run(sql)

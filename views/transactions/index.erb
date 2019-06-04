@@ -1,14 +1,17 @@
-<h1>Your transactions...</h1>
 
-<div class="container">
+<div class="heading_container">
+<h1>Your transactions...</h1>
+</div>
 
 <div class="header_links">
 
-<h3><a href="/transactions/new">Create new transaction</a></h3>
-
-<h3><a href="/transactions/by_date">Order transactions by date</a></h3>
+<a href="/transactions/new">
+<h3>Create new transaction</h3>
+</a>
 
 </div>
+
+<div class="budget_message_container">
 
 <% if @budgets %>
 <% for budget in @budgets %>
@@ -17,6 +20,9 @@
   <% end %>
 </div>
 <% end %>
+</div>
+
+<div class="totals_container">
 
 <div class="totals">
   <% if @total_by_merchant%>
@@ -33,7 +39,9 @@
 
   <h3>Total for all transactions: £<%=@total%></h3>
   </div>
+</div>
 
+<div class="container_transactions">
   <% for transaction in @transactions %>
   <div class="transactions">
     <p>Amount: £<%=transaction.amount.to_s%></p>
@@ -46,6 +54,13 @@
     <hr>
   </div>
   <% end %>
+  </div>
+
+  <div class="header_links">
+    <a href="/transactions/by_date">
+    <h3>Order transactions by date</h3>
+    </a>
+  </div>
 
   <div class="filters">
     <hr>
@@ -91,6 +106,3 @@
   </select>
   </form>
   </div>
-
-
-</div>
