@@ -57,7 +57,7 @@ class Transaction
   end
 
   def self.all()
-    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions"
+    sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions ORDER by id DESC"
     results = SqlRunner.run(sql)
     return results.map{|transaction| Transaction.new(transaction)}
   end

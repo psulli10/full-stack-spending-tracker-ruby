@@ -19,11 +19,20 @@
 
   <% for budget in @budgets %>
   <div class="budget_message">
-    <p>Budget total: £<%=budget.total%></p>
-    <p>Budget warning limit: £<%=budget.warning_limit%></p>
-    <p>Budget remaining: £<%=budget.remaining_budget()%></p>
-    <p>Budget status: <%=budget.message()%></p>
-    <p><a href="/budgets/<%=budget.id%>/edit" >Edit my budget</a></p>
+    <table style="width:100%">
+      <tr>
+        <th>Total</th>
+        <th>Warning limit</th>
+        <th>Remaining</th>
+        <th>Skint?</th>
+      </tr>
+      <tr>
+        <td>£<%=budget.total%></td>
+        <td>£<%=budget.warning_limit%></td>
+        <td>£<%=budget.remaining_budget%></td>
+        <td><%=budget.message()%></td>
+      </tr>
+      </table>
     <form method = "post" action = "/budgets/<%=budget.id%>/delete">
       <input type="submit" value="Delete budget"/>
     </form>
@@ -31,4 +40,12 @@
   </div>
   <% end %>
 
+  </div>
+
+<% if @budgets.length > 0%>
+<div class="header_links">
+<a href="/budgets/<%=budget.id%>/edit">
+  <h3>Edit my budget</h3>
+</a>
 </div>
+<% end %>

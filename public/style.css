@@ -360,7 +360,14 @@ input[type=submit]:hover {
 
 .budget_message {
   display: flex;
-  justify-content: center;
+  height: 10vh;
+  width: 50vw;
+  margin: 15px;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.budget_message td {
+  text-align: center;
 }
