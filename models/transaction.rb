@@ -56,6 +56,14 @@ class Transaction
     return result['to_char']
   end
 
+  def pretty_number()
+    number = @amount.to_s.split(".")
+    if number[1].size() < 2
+      number[1] << "0"
+    end
+    return number.join(".")
+  end
+
   def self.all()
     sql = "SELECT id, amount, transaction_date, merchant_id, tag_id FROM transactions ORDER by id DESC"
     results = SqlRunner.run(sql)
@@ -154,6 +162,14 @@ class Transaction
     results = SqlRunner.run(sql, values)
     results = results.map{|transaction| transaction['amount'].to_f}
     return results.sum()
+  end
+  
+  def self.pretty_number(amount)
+    number = amount.to_s.split(".")
+    if number[1].size() < 2
+      number[1] << "0"
+    end
+    return number.join(".")
   end
 
 end

@@ -26,21 +26,21 @@
 
 <div class="totals">
   <% if @total_by_merchant%>
-  <h3>Total for merchant: £<%=@total_by_merchant%>
+  <h3>Total for merchant: £<%= Transaction.pretty_number(@total_by_merchant)%>
   <%end%>
 
   <% if @total_by_month%>
-  <h3>Total for month: £<%=@total_by_month%>
+  <h3>Total for month: £<%= Transaction.pretty_number(@total_by_month)%>
   <%end%>
 
   <% if @total_by_tag%>
-  <h3>Total by tag: £<%=@total_by_tag%>
+  <h3>Total by tag: £<%= Transaction.pretty_number(@total_by_tag)%>
   <%end%>
 
-  <h3>Total for all transactions: £<%=@total%></h3>
+  <h3>Total for all transactions: £<%= Transaction.pretty_number(@total)%></h3>
 
   <% if @budgets%>
-  <h3>Remaining budget: £<%=@remaining_budget%>
+  <h3>Remaining budget: £<%= Budget.pretty_number(@remaining_budget)%>
   <%end%>
 
   </div>
@@ -59,7 +59,7 @@
         <th>Date</th>
       </tr>
       <tr>
-        <td>£<%=transaction.amount.to_s%></td>
+        <td>£<%=transaction.pretty_number%></td>
         <td><%=transaction.find_merchant%></td>
         <td><%=transaction.find_tag%> </td>
         <td><%=transaction.display_date%></td>

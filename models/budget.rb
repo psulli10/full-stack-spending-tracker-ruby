@@ -61,6 +61,15 @@ class Budget
     update()
   end
 
+  def pretty_number(amount)
+    number = amount.to_s.split(".")
+    if number[1].size() < 2
+      number[1] << "0"
+    end
+    return number.join(".")
+  end
+
+
   def self.find_by_id(id)
     sql = "SELECT * FROM budgets WHERE id = $1"
     values = [id]
@@ -102,6 +111,14 @@ class Budget
       @budget.message_indicator = "red"
     end
     @budget.update()
+  end
+
+  def self.pretty_number(amount)
+    number = amount.to_s.split(".")
+    if number[1].size() < 2
+      number[1] << "0"
+    end
+    return number.join(".")
   end
 
 end

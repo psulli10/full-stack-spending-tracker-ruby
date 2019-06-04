@@ -13,7 +13,7 @@ get '/transactions' do
   @total = Transaction.total()
   @budgets = Budget.all()
   if @budgets.length > 0
-  @remaining_budget = Budget.remaining_budget()
+  @remaining_budget = Budget.pretty_number(Budget.remaining_budget())
   end
   erb(:"transactions/index")
 end

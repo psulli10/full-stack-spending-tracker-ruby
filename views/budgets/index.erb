@@ -27,9 +27,9 @@
         <th>Skint?</th>
       </tr>
       <tr>
-        <td>£<%=budget.total%></td>
-        <td>£<%=budget.warning_limit%></td>
-        <td>£<%=budget.remaining_budget%></td>
+        <td>£<%=budget.pretty_number(budget.total)%></td>
+        <td>£<%=budget.pretty_number(budget.warning_limit)%></td>
+        <td>£<%=budget.pretty_number(budget.remaining_budget)%></td>
         <td><%=budget.message()%></td>
       </tr>
       </table>
