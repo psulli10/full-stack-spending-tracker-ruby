@@ -1,6 +1,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-image: url(/images/coins_background_image.jpg);
+  background-image: url(/images/bank-notes-cash-commerce.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -31,7 +31,8 @@ h1 {
   border-color: darkblue;
   border-radius: 25px;
   margin-top: 10px;
-  width: 50vw;
+  width: 100vw;
+  background-color: #ffffffa1;
 }
 
 .container-home {
@@ -45,7 +46,7 @@ h1 {
 .box {
   display: flex;
   border-radius: 25px;
-  background: darkblue;
+    background-color: #00008bc7;
   height: 10vh;
   width: 50vw;
   margin: 15px;
@@ -120,7 +121,8 @@ nav {
   align-items: center;
   flex-flow: column;
   color: darkblue;
-  margin-top: 15px;
+  margin-top: 25vh;
+  background-color: #ffffffa1;
 }
 
 
@@ -149,6 +151,8 @@ input[type=submit]:hover {
   align-items: center;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 20px;
+  color: white
 }
 
 .merchant_filter {
@@ -204,6 +208,11 @@ input[type=submit]:hover {
   align-items: center;
   flex-direction: row;
   justify-content: center;
+  background-color: white;
+  border-radius: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #ffffffa1;
 }
 
 .transactions th {
@@ -222,7 +231,7 @@ input[type=submit]:hover {
 .header_links h3 {
   display: flex;
   border-radius: 25px;
-  background-color: darkblue;
+  background-color: #00008bc7;
   color: white;
   height:10vh;
   width: 50vw;
@@ -257,6 +266,7 @@ input[type=submit]:hover {
   border-radius: 25px;
   margin-top: 10px;
   width: 50vw;
+  background-color: #ffffffa1;
 }
 
 .budget_message_container {
@@ -271,7 +281,7 @@ input[type=submit]:hover {
   border-radius: 25px;
   height: 10vh;
   width: 50vw;
-  background-color: green;
+  background-color: #008000c7;
   color: white;
   align-items: center;
   justify-content: center;
@@ -283,7 +293,7 @@ input[type=submit]:hover {
   justify-content: center;
   height: 10vh;
   width: 50vw;
-  background-color: yellow;
+  background-color: #b9b90ead;
   color: white;
 }
 .red {
@@ -327,6 +337,13 @@ input[type=submit]:hover {
   color: darkblue;
 }
 
+.tag p {
+  background-color: #ffffffa1;
+  width: 10vw;
+  text-align: center;
+  border-radius: 5px;
+}
+
 .merchant {
   display: flex;
   height: 10vh;
@@ -357,6 +374,13 @@ input[type=submit]:hover {
   color: darkblue;
 }
 
+.merchant p {
+  background-color: #ffffffa1;
+  width: 10vw;
+  text-align: center;
+  border-radius: 5px;
+}
+
 
 .budget_message {
   display: flex;
@@ -370,4 +394,11 @@ input[type=submit]:hover {
 
 .budget_message td {
   text-align: center;
+}
+
+.budget_message table {
+  background-color: #ffffffa1;
+  width: 10vw;
+  text-align: center;
+  border-radius: 5px;
 }
