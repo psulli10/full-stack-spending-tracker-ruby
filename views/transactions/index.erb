@@ -26,21 +26,25 @@
 
 <div class="totals">
   <% if @total_by_merchant%>
-  <h3>Total for merchant: £<%= Transaction.pretty_number(@total_by_merchant)%>
+  <h3>Total spent with '<%=@merchant_name%>': £<%= Transaction.pretty_number(@total_by_merchant)%></h3>
   <%end%>
 
-  <% if @total_by_month%>
-  <h3>Total for month: £<%= Transaction.pretty_number(@total_by_month)%>
+  <% if @total_by_month > 0 %>
+  <h3>Total spent in '<%=@month_name%>': £<%= Transaction.pretty_number(@total_by_month)%></h3>
+  <%end%>
+
+  <% if @total_by_month == 0 %>
+  <h3>You have no transactions for <%=@month_name%></h3>
   <%end%>
 
   <% if @total_by_tag%>
-  <h3>Total by tag: £<%= Transaction.pretty_number(@total_by_tag)%>
+  <h3>Total spent on '<%=@tag_name%>': £<%= Transaction.pretty_number(@total_by_tag)%></h3>
   <%end%>
 
   <h3>Total for all transactions: £<%= Transaction.pretty_number(@total)%></h3>
 
-  <% if @budgets%>
-  <h3>Remaining budget: £<%= Budget.pretty_number(@remaining_budget)%>
+  <% if @budgets.size > 0 %>
+  <h3>Remaining budget: £<%= Budget.pretty_number(@remaining_budget)%></h3>
   <%end%>
 
   </div>

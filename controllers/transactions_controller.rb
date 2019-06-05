@@ -12,6 +12,7 @@ get '/transactions' do
   @tags = Tag.all()
   @total = Transaction.total()
   @budgets = Budget.all()
+  @total_by_month = -1
   if @budgets.length > 0
   @remaining_budget = Budget.pretty_number(Budget.remaining_budget())
   end
@@ -24,6 +25,7 @@ get '/transactions/by_date' do
   @transactions = Transaction.sort_by_date()
   @merchants = Merchant.all()
   @tags = Tag.all()
+  @total_by_month = -1
   @total = Transaction.total()
   @budgets = Budget.all()
   @remaining_budget = Budget.remaining_budget()
@@ -43,9 +45,11 @@ end
 post '/transactions' do
   @transaction = Transaction.new(params)
   @transaction.save()
-  @update_message = Budget.update_message
   @budgets = Budget.all()
+  if @budgets.length > 0
+  @update_message = Budget.update_message
   @remaining_budget = Budget.remaining_budget()
+  end
   redirect '/transactions'
 end
 
@@ -54,9 +58,11 @@ end
 post '/transactions/:id/delete' do
   @transaction = Transaction.find_by_id(params['id'])
   @transaction.delete()
-  @update_message = Budget.update_message
   @budgets = Budget.all()
+  if @budgets.length > 0
+  @update_message = Budget.update_message
   @remaining_budget = Budget.remaining_budget()
+  end
   redirect '/transactions'
 end
 
@@ -66,10 +72,12 @@ get '/transactions/filter_merchant' do
   @transactions = Transaction.filter_merchant(params['merchant_id'])
   @merchants = Merchant.all()
   @tags = Tag.all()
+  @total_by_month = -1
   @total = Transaction.total()
   @total_by_merchant = Transaction.total_by_merchant(params['merchant_id'])
   @budgets = Budget.all()
   @remaining_budget = Budget.remaining_budget()
+  @merchant_name = Merchant.find_merchant(params['merchant_id'])
   erb(:"transactions/index")
 end
 
@@ -80,9 +88,11 @@ get '/transactions/filter_tag' do
   @merchants = Merchant.all()
   @tags = Tag.all()
   @total = Transaction.total()
+  @total_by_month = -1
   @total_by_tag = Transaction.total_by_tag(params['tag_id'])
   @budgets = Budget.all()
   @remaining_budget = Budget.remaining_budget()
+  @tag_name = Transaction.find_tag(params['tag_id'])
   erb(:"transactions/index")
 end
 
@@ -96,5 +106,6 @@ get '/transactions/filter_month' do
   @total_by_month = Transaction.total_by_month(params['month_number'])
   @budgets = Budget.all()
   @remaining_budget = Budget.remaining_budget()
+  @month_name = Transaction.return_month(params['month_number'])
   erb(:"transactions/index")
 end

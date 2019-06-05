@@ -43,7 +43,7 @@ class Budget
   def remaining_budget()
     total_transactions = Transaction.total()
     remaining_budget = @total - total_transactions
-    return remaining_budget
+    return remaining_budget.round(2)
   end
 
   def update_message()
@@ -94,7 +94,7 @@ class Budget
     results_array = SqlRunner.run(sql)[0]
     results_budget = results_array['total'].to_f
     remaining_budget = results_budget - total_transactions
-    return remaining_budget
+    return remaining_budget.round(2)
   end
 
   def self.update_message()

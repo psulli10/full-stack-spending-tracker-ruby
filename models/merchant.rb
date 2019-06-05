@@ -55,5 +55,12 @@ class Merchant
     SqlRunner.run(sql)
   end
 
+  def self.find_merchant(tag_id)
+    sql = "SELECT name FROM merchants WHERE id = $1"
+    values = [tag_id]
+    result = SqlRunner.run(sql, values)[0]
+    return result['name']
+  end
+
 
 end

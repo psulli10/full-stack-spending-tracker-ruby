@@ -163,13 +163,48 @@ class Transaction
     results = results.map{|transaction| transaction['amount'].to_f}
     return results.sum()
   end
-  
+
   def self.pretty_number(amount)
     number = amount.to_s.split(".")
     if number[1].size() < 2
       number[1] << "0"
     end
     return number.join(".")
+  end
+
+  def self.find_tag(tag_id)
+    sql = "SELECT name FROM tags WHERE id = $1"
+    values = [tag_id]
+    result = SqlRunner.run(sql, values)[0]
+    return result['name']
+  end
+
+  def self.return_month(month_number)
+    if month_number == "1"
+      return "January"
+    elsif month_number == "2"
+      return "February"
+    elsif month_number == "3"
+      return "March"
+    elsif month_number == "4"
+      return "April"
+    elsif month_number == "5"
+      return "May"
+    elsif month_number == "6"
+      return "June"
+    elsif month_number == "7"
+      return "July"
+    elsif month_number == "8"
+      return "August"
+    elsif month_number == "9"
+      return "September"
+    elsif month_number == "10"
+      return "October"
+    elsif month_number == "11"
+      return "November"
+    elsif month_number == "12"
+      return "December"
+    end
   end
 
 end
