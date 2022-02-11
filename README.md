@@ -55,7 +55,7 @@ Run database schema
 psql -d spending_tracker -f db/spending_tracker.sql
 ```
 
-Run seed file for creation of initial transactions, merchants and categories
+Run seed file for creation of initial transactions, merchants and tags
 
 ```
 ruby db/seeds.rb
