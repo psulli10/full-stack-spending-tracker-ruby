@@ -22,10 +22,10 @@
 ![Add Budget](/screenshots/add_budget.png)
 
 #### Budget warning
-![Savings Made](/screenshots/budget_warning.png)
+![Budget warning](/screenshots/budget_warning.png)
 
 #### Filtering overview
-![Merchant Overview](/screenshots/filtering.png)
+![Filtering Overview](/screenshots/filtering.png)
 
 
 ### Prerequisites
@@ -39,7 +39,7 @@ In order to run the application locally you will need the following software ins
 * [Pry](https://rubygems.org/gems/pry/versions/0.10.3)
 
 
-### Installation
+## Installation
 
 Here's how you can get the Skint running locally once you download the repository. This will need to be done from the root of the local repository folder.
 
