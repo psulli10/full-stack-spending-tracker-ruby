@@ -1,6 +1,6 @@
 # Spending Tracker
 
-*A spending tracker (Skint) which allows a user to organise spending and track against a budget. First solo CodeClan project. Ruby/Sinatra backend with a PostreSQL database, HTML5 and vanilla CSS used for the frontend. MVC architecture*
+*A spending tracker (Skint) which allows a user to organise spending and track against a budget. First solo CodeClan project. Ruby/Sinatra backend with a PostreSQL database, HTML5 and vanilla CSS used for the frontend. MVC architecture.*
 
 ![Profile Screenshot](/screenshots/home.png)
 
